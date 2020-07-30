@@ -1,0 +1,91 @@
+{% extends 'base_site.html' %}
+{% block content %}
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+
+
+    <style>
+    .container{background-color: #001f3f;
+           opacity: 0.8;
+           width:50%;
+           margin-left:0px;
+           margin-top:26px;
+           margin-bottom:35px;
+           height:340px;}
+
+ .img {
+ width: 350px;
+  height:350px;
+  margin-left:175px;}
+
+    body{
+    background-color:#f7fcf8;
+    width:100%;
+    }
+
+
+.profile{color:white;
+          background-color:black;}
+
+
+
+
+.row {
+  display: flex;
+  margin-right:0;
+  border-radius: 20px;
+}
+p {font-family: times new roman;
+   font-size:20px;
+   }
+
+
+
+ .edit{color: white;
+       padding-right:5px;
+       padding-left:5px;
+              background-color:blue;
+              opacity:0.8;}
+
+       h1{ margin-left:150px;
+         font-family:Arial Verdana;
+         color: #334451;
+         margin-top:40px;}
+
+ .active {
+        background-color: #4CAF50;
+}
+
+
+    </style>
+</head>
+<body>
+<h1><u>Your Profile</u></h1>
+
+<div class="row">
+
+    <div>
+        <img class="img" src="{%static 'images/singers.png'%}"></div>
+    <div class="container">
+        <P><b>User Name :</b> {{ user.username}}</P>
+        <p><b>First Name:</b> {{ user.first_name}}</p>
+        <p><b>Last  Name:</b> {{ user.last_name}}</p>
+        <p><b>Email addr:</b> {{ user.email}}</p>
+
+
+        <a class="edit" href="edit_profile">Edit</a>
+
+
+    </div>
+</div>
+<!-- Footer -->
+{% include 'footer.html' %}
+<!-- Footer -->
+
+{% endblock content %}
+</body>
+</html>

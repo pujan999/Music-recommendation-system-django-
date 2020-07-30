@@ -1,0 +1,139 @@
+{% load static %}
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" type="text/css" href="{%  static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <style>
+
+    body{
+    background-color:#f7fcf8;
+    }
+
+
+  img {
+
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+  margin-top: 20px;
+  margin-left:8px;
+  height:250px;
+}
+.grid-container {
+
+  display: inline-block;
+  width:1000px;
+  grid-gap: 10px;
+  background-color: #f0f5f1;
+  margin-left:150px;
+  margin-top: 10px;
+
+}
+
+
+li a:hover {
+  background-color: #111;
+  text-decoration: none;
+  color:white;
+}
+
+.error1{ margin-left:600px;}
+.row1{
+       display: inline-block;
+       }
+
+.card {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+  width: 27%;
+  display: inline-block;
+  margin:20px;
+  height:390px;}
+  .card:hover {
+  box-shadow: 0 12px 24px 0 rgba(0,0,0,0.2);
+
+}
+.search-container{
+margin-right: 70px;
+float:left;
+margin-top:15px;}
+
+.user{ margin-left:255px;
+      margin-top:13px;
+      font-size:25px;
+       font-family:Comic Sans MS;
+      }
+.name{ color:white;
+       font-family:Brush Script MT;
+       padding-left:200px;
+       padding-right:5px;
+       margin-top:10px;
+       font-size:30px;}
+.searchbutton{color: white;
+              background-color:black;
+              opacity:0.8;}
+ .button1 {color: white;
+              background-color:blue;
+              opacity:0.8;
+              width:150px;}
+ .edit{color:white;
+       font-size:20px;
+       padding: 6px 45px;
+       background-color:blue;
+       }
+  .edit:hover{color:white;
+       font-size:20px;
+       padding: 6px 45px;
+       background-color:black;
+       text-decoration: none;
+       }
+  .active {
+        background-color: #4CAF50;
+}
+
+    </style>
+</head>
+<body>
+<div>
+
+    <ul>
+        <li><a class="homepage" href="homepage">Home</a></li>
+        <li><a class="playlist" href="playlist">Playlist</a></li>
+        <li><a class="profile" href="profile" >Profile</a></li>
+        <li class="name">EARBENDER</li>
+        <div class="search-container">
+            <form method="post" action="Search">
+                {% csrf_token %}
+                <input type="text" placeholder=" {% for message in messages %}{{ message}}
+                      {% endfor %}" name="srh">
+                <button type="submit" class="searchbutton">Search</button>
+                </i></button>
+            </form>
+        </div>
+        <li class="user"> {% if user.is_authenticated%}
+            <p> {{ user.username}}</p>
+            {% endif %}
+        </li>
+
+        <li style="float:right"><a class="active" href="logout">Logout</a></li>
+
+
+    </ul>
+</div>
+
+<div class="error1">
+    {% for message in messages %}<p style="color:red;">{{ message}}</p>
+    {% endfor %}
+</div>
+
+{% block content %}
+{% endblock content %}
+</body>
+</html>
+
+

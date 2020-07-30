@@ -1,0 +1,166 @@
+{% extends 'base_site.html' %}
+{% block content %}
+
+
+<html>
+<head>
+    <style>
+    .music{display: none;}
+    .input{display: none;}
+
+
+    button{color:white;
+           background-color:blue;
+           width:80px;}
+     .button1{color:white;
+           background-color:blue;
+           margin-left:85px;
+           width:80px;
+           margin-top:0px;}
+
+      h1{ margin-left:150px;
+         font-family:Arial Verdana;
+         color: #334451;
+         margin-top:40px;
+         font-size:30px;}
+
+ .homepage{color:white;
+                  background-color:black;}
+
+
+
+ form{margin-top:0px;
+
+      width:10px;
+      display:inline;}
+
+
+.name1{ color:black;
+      font-family:Times New Roman;
+      margin-bottom:5px;
+      }
+
+.recom{display: block;
+        margin-top:50px;
+
+        align:left;}
+
+ .rec{
+      align:left;
+      }
+
+    </style>
+</head>
+
+<h1><u>Songs for You</u></h1>
+<div class="grid-container">
+
+    {% for songs in song %}
+
+    <div class="card">
+        <img src="{{ songs.image.url}}"/><br>
+        <p class=" name1"><b> {{ songs.artist_name}} </b></p>
+        <p class="name1"><b> {{ songs.song_name }} </b></p>
+
+
+        <audio controls id="{{forloop.counter}}" class="music">
+            <source src="{{ songs.music.url}}" type="audio/mp3"/>
+        </audio>
+        <button type="button" onclick="playsong({{forloop.counter}})" id="but_{{forloop.counter}}">Play</button>
+        <button type="button" onclick="pausesong({{forloop.counter}})" id="but1_{{forloop.counter}}">Pause</button>
+        <button type="button" onclick="stopsong({{forloop.counter}})" id="but2_{{forloop.counter}}">Stop</button>
+        <button type="button" onclick="forwardAudio({{forloop.counter}})">forward</button>
+        <form method="post" action='playlist'>
+            {%csrf_token%}
+            <input class="input" name="song_id" value="{{songs.id}}">
+            <input type="submit" value="Add" class="button1">
+
+        </form>
+
+
+    </div>
+    {% endfor %}
+
+
+</div>
+<div class="search-container" style="margin-left:450px;">
+    <form method="post" action="Recommendation">
+        <label>Get recommendation for </label>
+        {% csrf_token %}
+        {{ recm }}
+        <input type="text" name="rec">
+        <button type="submit" class="searchbutton">Go</button>
+        </i></button>
+    </form>
+</div>
+<br>
+<div class="recom">
+    <h1 style=" margin-left:450px;"> songs similar to: {% for ki in songName %}
+        <b>{{ ki }} </b>
+        {% endfor %}
+</h1>
+</div>
+{% for k in re %}
+<div class="rec" style="margin-left:450px;">
+
+    <b>{{ k}} </b><br>
+</div>
+
+
+</div>
+{% endfor %}
+</div>
+
+
+{% include 'footer.html' %}
+
+<script>
+function playsong(player_id) {
+    document.getElementById(player_id).play();
+    document.getElementById('but_'+player_id).innerHTML = "Playing";
+     document.getElementById('but1_'+player_id).innerHTML = "Pause";
+     document.getElementById('but2_'+player_id).innerHTML = "Stop";
+
+}
+
+
+function pausesong(player_id) {
+    document.getElementById(player_id).pause();
+    document.getElementById('but_'+player_id).innerHTML = "Play";
+    document.getElementById('but1_'+player_id).innerHTML = "Paused";
+
+
+}
+
+function stopsong(player_id) {
+     document.getElementById('but_'+player_id).innerHTML = "Play";
+     document.getElementById('but2_'+player_id).innerHTML = "Stopped";
+    var player = document.getElementById(player_id);
+    player.pause();
+    player.currentTime = 0;
+}
+
+
+function forwardAudio(player_id) {
+     var player = document.getElementById(player_id);
+     player.currentTime += 30.0;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock content %}
+</body>
+
+</html>

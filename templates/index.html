@@ -1,0 +1,132 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/loging.css' %}" />
+    <style>
+
+
+    html, body {
+    height:100%;
+}
+
+        .index{
+        height: 60%;
+        background-size: 100% 100%;
+        background-image: url( {%  static 'images/index.jpeg' %});
+
+        }
+
+        #header{
+
+         background-color: #555555;
+         color:white;
+         text-align:center;
+         opacity: 0.8;
+         }
+  .buttons {
+  transition-duration: 0.4s;
+  cursor: pointer;
+   text-align:center;
+   margin-top:250px;
+
+
+}
+a:hover {
+  background-color: #555555;
+  color: white;
+  text-decoration: none;
+}
+a{
+ margin-top:40px;
+ text-decoration: none;
+ color:black;
+ padding: 16px 32px;
+  text-align: right;
+  background-color: #e7e7e7;
+  color: Black;
+  }
+
+h1{
+color:white;
+
+font-family: Arial, Helvetica, sans-serif;
+ }
+ img{width:300px;
+     height:200px;
+     margin-top:0px;
+     }
+
+     .images{display:inline;}
+
+     .middle{display:inline;
+             background-color:black;
+             width:100%;}
+
+.karoke{display:inline;}
+
+             marquee{
+                  display:inline;
+                  behavior=alternate;
+                   width:100%;}
+
+                  table {width:100%;}
+
+
+    </style>
+
+
+
+</head>
+<body>
+<div>
+
+
+<div class="index" >
+<div id="header">
+  <h1> Welcome to EARBENDER</h1>
+</div>
+ <div class="buttons">
+
+  <a href = "accounts/register">Register</a>
+  <a href = "accounts/login">login</a>
+  </div>
+
+  </div>
+</div>
+<table>
+    <tr>
+
+
+
+    <td class="mrq">
+
+<marquee behavior="alternate">
+
+   <div class="images" >
+       <img src="{%static 'images/karoke.jpg'%}" width="500px">
+
+        <img src="{%static 'images/m2.jpg'%}" width="500px">
+         <img src="{%static 'images/m3.jpg'%}" width="500px">
+          <img src="{%static 'images/m4.jpg'%}" width="500px">
+          <img src="{%static 'images/weekend.jpg'%}" width="500px">
+
+   </div>
+</marquee>
+    </td>
+
+</div>
+    </tr>
+
+</table>
+
+
+<!-- Footer -->
+{% include 'footer.html' %}
+<!-- Footer -->
+</body>
+</html>
